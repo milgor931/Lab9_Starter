@@ -69,21 +69,21 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button id="log">Console Log</button>
+      <button id="error">Console Error</button>
+      <button id="count">Console Count</button>
+      <button id="warn">Console Warn</button>
+      <button id="assert">Console Assert</button>
+      <button id="clear">Console Clear</button>
+      <button id="dir">Console Dir</button>
+      <button id="dirxml">Console dirxml</button>
+      <button id="groupStart">Console Group Start</button>
+      <button id="groupEnd">Console Group End</button>
+      <button id="table">Console Table</button>
+      <button id="startTimer">Start Timer</button>
+      <button id="endTimer">End Timer</button>
+      <button id="trace">Console Trace</button>
+      <button id="globalError">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -102,6 +102,78 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns.forEach(button => {
+      button.addEventListener('click', () => {
+        let type = button.getAttribute('id');
+        switch (type) {
+          case 'log':
+            console.log("I logged a message!");
+            break;
+          case 'error':
+            console.error("I made a console error message!");
+            break;
+          case 'count':
+            console.count("console count");
+            break;
+          case 'warn':
+            console.warn('warn');
+            break;
+          case 'assert':
+            const x = 1;
+            const y = 0;
+            const reason = 'x is expected to be less than y';
+            console.assert(x < y, { x, y, reason });
+            break;
+          case 'clear':
+            console.clear();
+            break;
+          case 'dir':
+            console.dir(document.head);
+            break;
+          case 'dirxml':
+            console.dirxml(document);
+            break;
+          case 'groupStart':
+            const label = 'Animals';
+            console.group(label);
+            console.info('dog');
+            console.info('cat');
+            console.info('mouse');
+            console.info('bunny');
+            break;
+          case 'groupEnd':
+            console.groupEnd('Animals');
+            break;
+          case 'table':
+            var people = [
+              {
+                first: 'Bobby',
+                last: 'Bo',
+              },
+              {
+                first: 'Mama>',
+                last: 'Mia',
+              }
+            ];
+            console.table(people);
+            break;
+          case 'startTimer':
+            console.time('blub');
+            break;
+          case 'endTimer':
+            console.timeEnd('blub');
+            break;
+          case 'trace':
+            const one = () => { two(); };
+            const two = () => { three(); };
+            const three = () => { console.trace(); };
+            one();
+            break;
+        }
+
+      })
+    })
+
   </script>
 </body>
 
